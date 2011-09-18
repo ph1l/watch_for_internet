@@ -1,0 +1,9 @@
+user "any"
+connect "/usr/sbin/chat -v -f /etc/chatscripts/pap -T *99#"
+/dev/gsmmodem
+460800
+noipdefault
+usepeerdns
+defaultroute
+noauth
+nodetach
