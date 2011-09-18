@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+#
+#
+
+NUM_DONGLES=0
+USB_DONGLE_IDS=()
+CONN_TYPES=()
+SERIAL="/dev/ttyUSB0"
+WAIT_RETRY=300
+LOG="/var/log/watch_for_internet.log"
+
+while true; do #infinite loop for keeping us connected...
+	echo "`date +%Y-%m-%d\ %H:%M:%S`: Starting Connection Loop" >> ${LOG}
+	. /etc/watch_for_internet.conf
+	i=0
+	while [ $i -lt ${NUM_DONGLES} ];do
+		USB_DONGLE_ID=${USB_DONGLE_IDS[$i]}
+		CONN_TYPE=${CONN_TYPES[$i]}
+		USBOUT=`lsusb -d ${USB_DONGLE_ID}`
+		if [ ! -z "${USBOUT}" ]; then
+			echo "    --> Found USB_DONGLE:" >> ${LOG}
+			echo ${USBOUT} >> ${LOG}
+			if [ "${CONN_TYPE}" == "PPP" ]; then
+				#echo "    -->exec:wvdial --config=/etc/wvdial.${USB_DONGLE_ID}.conf" >> ${LOG}
+				#wvdial --config=/etc/wvdial.${USB_DONGLE_ID}.conf >> ${LOG} 2>&1
+				echo "    -->exec: pppd call ${USB_DONGLE_ID}" >> ${LOG}
+				pppd call ${USB_DONGLE_ID} >> ${LOG} 2>&1
+				#pppd connect 'chat -v -f /etc/ppp/watch_for_internet/connect.${USB_DONGLE_ID}.cmds' nodetach debug user any password any noccp ${SERIAL} >> ${LOG} 2>&1
+			else
+				echo "    -->UNKNOWN CONNECTION TYPE" >> ${LOG}
+			fi
+		fi
+		i=$(( i + 1 ))
+	done
+	 
+	# wait before trying again
+	sleep ${WAIT_RETRY}
+done
