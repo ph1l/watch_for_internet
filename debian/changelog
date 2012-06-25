@@ -1,3 +1,10 @@
+watch-for-internet (0.1-1) unstable; urgency=low
+
+  * update package architecture to all
+  * update source format to basic
+
+ -- Philip J Freeman <philip.freeman@gmail.com>  Mon, 25 Jun 2012 01:09:02 -0500
+
 watch-for-internet (0.1) unstable; urgency=low
 
   * Initial Release.
