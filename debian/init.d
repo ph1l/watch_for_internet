@@ -1,23 +1,20 @@
 #!/bin/sh
 ### BEGIN INIT INFO
 # Provides:          watch-for-internet
-# Required-Start:    $network $local_fs
-# Required-Stop:
+# Required-Start:    $network $local_fs $remote_fs $syslog
+# Required-Stop:     $network $local_fs $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: <Enter a short description of the sortware>
-# Description:       <Enter a long description of the software>
-#                    <...>
-#                    <...>
+# Short-Description: Handles the watch_for_internet daemon
 ### END INIT INFO
 
 # Author: Philip J Freeman <philip.freeman@gmail.com>
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC=watch-for-internet             # Introduce a short description here
-NAME=watch-for-internet             # Introduce the short server's name here
-DAEMON=/usr/sbin/watch-for-internet # Introduce the server's location here
+DESC=watch_for_internet             # Introduce a short description here
+NAME=watch_for_internet             # Introduce the short server's name here
+DAEMON=/usr/sbin/watch_for_internet # Introduce the server's location here
 DAEMON_ARGS=""             # Arguments to run the daemon with
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME

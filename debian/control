@@ -1,15 +1,16 @@
 Source: watch-for-internet
-Section: unknown
+Section: comm
 Priority: extra
 Maintainer: Philip J Freeman <philip.freeman@gmail.com>
 Build-Depends: debhelper (>= 7.0.50~)
-Standards-Version: 3.8.4
-Homepage: <insert the upstream URL, if relevant>
+Standards-Version: 3.9.1
+Homepage: https://github.com/ph1l/watch_for_internet
 #Vcs-Git: git://git.debian.org/collab-maint/watch-for-internet.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/watch-for-internet.git;a=summary
 
 Package: watch-for-internet
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: Automatically manage a USB Cell modem connection
+ This simple shell script attempts to locate an inserted USB Cell Modem
+ and connect it. Upon disconnect, it tries again. and repeat...
