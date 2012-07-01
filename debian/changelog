@@ -1,3 +1,9 @@
+watch4inet (0.2-2) unstable; urgency=low
+
+  * update logfile name in config file
+
+ -- Philip J Freeman <philip.freeman@gmail.com>  Sun, 01 Jul 2012 13:16:52 -0500
+
 watch4inet (0.2-1) unstable; urgency=low
 
   * renamed daemon
