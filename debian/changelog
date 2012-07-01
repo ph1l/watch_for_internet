@@ -1,6 +1,7 @@
 watch-for-internet (0.1-2) unstable; urgency=low
 
   * update init script to write a pidfile & background the daemon
+  * add package debendency on ppp
 
  -- Philip J Freeman <philip.freeman@gmail.com>  Sun, 01 Jul 2012 11:01:03 -0500
 

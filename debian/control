@@ -10,7 +10,7 @@ Homepage: https://github.com/ph1l/watch_for_internet
 
 Package: watch-for-internet
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ppp
 Description: Automatically manage a USB Cell modem connection
  This simple shell script attempts to locate an inserted USB Cell Modem
  and connect it. Upon disconnect, it tries again. and repeat...
