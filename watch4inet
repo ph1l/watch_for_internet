@@ -8,11 +8,11 @@ USB_DONGLE_IDS=()
 CONN_TYPES=()
 SERIAL="/dev/ttyUSB0"
 WAIT_RETRY=300
-LOG="/var/log/watch_for_internet.log"
+LOG="/var/log/watch4inet.log"
 
 while true; do #infinite loop for keeping us connected...
 	echo "`date +%Y-%m-%d\ %H:%M:%S`: Starting Connection Loop" >> ${LOG}
-	. /etc/watch_for_internet.conf
+	. /etc/watch4inet.conf
 	i=0
 	while [ $i -lt ${NUM_DONGLES} ];do
 		USB_DONGLE_ID=${USB_DONGLE_IDS[$i]}
@@ -24,6 +24,9 @@ while true; do #infinite loop for keeping us connected...
 			if [ "${CONN_TYPE}" == "PPP" ]; then
 				#echo "    -->exec:wvdial --config=/etc/wvdial.${USB_DONGLE_ID}.conf" >> ${LOG}
 				#wvdial --config=/etc/wvdial.${USB_DONGLE_ID}.conf >> ${LOG} 2>&1
+				if [ ! -e /etc/ppp/peers/${USB_DONGLE_ID} ]; then
+					ln -vs /etc/ppp/peers/watch4inet.default /etc/ppp/peers/${USB_DONGLE_ID} >> ${LOG} 2>&1
+				fi
 				echo "    -->exec: pppd call ${USB_DONGLE_ID}" >> ${LOG}
 				pppd call ${USB_DONGLE_ID} >> ${LOG} 2>&1
 				#pppd connect 'chat -v -f /etc/ppp/watch_for_internet/connect.${USB_DONGLE_ID}.cmds' nodetach debug user any password any noccp ${SERIAL} >> ${LOG} 2>&1
